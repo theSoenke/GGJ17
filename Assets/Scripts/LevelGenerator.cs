@@ -5,7 +5,8 @@ public class LevelGenerator : MonoBehaviour
 {
     public List<GameObject> levelPrefabs;
     public float minPlayerSpawnDistance = 1;
-    public float partWidth = 1;
+    public float prefabWidth = 1;
+    public float prefabHeight = 1;
     public float cullingDistance = 1;
 
     private float lastSpawnedPos;
@@ -28,7 +29,7 @@ public class LevelGenerator : MonoBehaviour
     {
         if (lastSpawnedPos - xPlayerPos - minPlayerSpawnDistance < 0)
         {
-            float nextSpawnPos = lastSpawnedPos + partWidth;
+            float nextSpawnPos = lastSpawnedPos + prefabWidth;
             SpawnNewLevelPart(nextSpawnPos);
         }
     }
@@ -56,7 +57,8 @@ public class LevelGenerator : MonoBehaviour
     {
         lastSpawnedPos = xPos;
         GameObject newLevelPart = GetNewLevelPart();
-        var partPos = new Vector3(xPos, 0, 0);
+        float height = -(prefabHeight / 2);
+        var partPos = new Vector3(xPos, height, 0);
         GameObject spawnedPart = Instantiate(newLevelPart, partPos, newLevelPart.transform.rotation);
         spawnedPart.transform.SetParent(transform);
         spawnedParts.Add(spawnedPart);
