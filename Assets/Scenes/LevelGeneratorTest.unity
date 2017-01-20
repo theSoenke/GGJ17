@@ -384,7 +384,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelPrefabs:
-  - {fileID: 1636317124390478, guid: 4d6c87d024d85f643a439ca992a7b9b5, type: 2}
+  - {fileID: 1789542884965236, guid: 15dec05b699522e44bfe8e5e212d1d8d, type: 2}
+  - {fileID: 1758064887347464, guid: 7744c33f5b282cc418044fa8d7f79e07, type: 2}
+  - {fileID: 1369821570708100, guid: d1c084b9530aa00479d55552d75624ac, type: 2}
   minPlayerSpawnDistance: 10
   partWidth: 9.15
   cullingDistance: 15
