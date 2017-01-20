@@ -249,7 +249,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelPrefabs:
   - {fileID: 1092077708557378, guid: 6b5925d1eb8f48048bc9eaa2aa020cb7, type: 2}
-  partWidth: 1
+  - {fileID: 1092077708557378, guid: e8fed75a5e009a54d98602256964d393, type: 2}
+  partWidth: 0.1
 --- !u!4 &1255185935
 Transform:
   m_ObjectHideFlags: 0

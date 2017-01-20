@@ -7,7 +7,6 @@ public class LevelGenerator : MonoBehaviour
     public float partWidth = 1;
 
     private float lastSpawnedPos;
-    private int partsSpawned;
     private readonly List<GameObject> spawnedParts = new List<GameObject>();
 
 
@@ -15,7 +14,7 @@ public class LevelGenerator : MonoBehaviour
     {
         if (lastSpawnedPos < xPlayerPos / partWidth)
         {
-            float nextSpawnPos = lastSpawnedPos + (partsSpawned + partWidth);
+            float nextSpawnPos = lastSpawnedPos + partWidth;
             SpawnNewLevelPart(nextSpawnPos);
         }
         RemoveLevelsPartsOutOfView(xPlayerPos);
@@ -48,7 +47,6 @@ public class LevelGenerator : MonoBehaviour
         GameObject spawnedPart = Instantiate(newLevelPart, partPos, newLevelPart.transform.rotation);
         spawnedPart.transform.SetParent(transform);
         spawnedParts.Add(spawnedPart);
-        partsSpawned++;
     }
 
     private GameObject GetNewLevelPart()
