@@ -5,6 +5,7 @@ public class LevelGenerator : MonoBehaviour
 {
     public List<GameObject> levelPrefabs;
     public float partWidth = 1;
+    public float cullingDistance = 1;
 
     private float lastSpawnedPos;
     private readonly List<GameObject> spawnedParts = new List<GameObject>();
@@ -17,16 +18,16 @@ public class LevelGenerator : MonoBehaviour
             float nextSpawnPos = lastSpawnedPos + partWidth;
             SpawnNewLevelPart(nextSpawnPos);
         }
-        RemoveLevelsPartsOutOfView(xPlayerPos);
+        LevelCulling(xPlayerPos);
     }
 
-    private void RemoveLevelsPartsOutOfView(float xPlayerPos)
+    private void LevelCulling(float xPlayerPos)
     {
         GameObject levelPartToRemove = null;
 
         foreach (var levelPrefab in spawnedParts)
         {
-            if (levelPrefab.transform.position.x < xPlayerPos - partWidth)
+            if (levelPrefab.transform.position.x < xPlayerPos - cullingDistance)
             {
                 levelPartToRemove = levelPrefab;
             }
