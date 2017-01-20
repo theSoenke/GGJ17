@@ -6,6 +6,13 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     #region fields & properties
+    [SerializeField]
+    private Transform _model;
+    [SerializeField]
+    private AnimationCurve _tiltCurve; 
+
+
+
     private Rigidbody2D _rigidbody;
 
 
@@ -32,6 +39,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         MovePlayer(_input);
+        ApplyTilt();
     }
     #endregion
 
@@ -45,5 +53,16 @@ public class PlayerController : MonoBehaviour
         var directionVector = new Vector2(direction.X,direction.Y).normalized;
 
         return directionVector;
+    }
+
+    private void ApplyTilt()
+    {
+        _model.rotation = CalculateTilt();
+    }
+
+    private Quaternion CalculateTilt()
+    {
+        var angle = _tiltCurve.Evaluate(_rigidbody.velocity.y);
+        return Quaternion.Euler(0,0,angle + 90);
     }
 }

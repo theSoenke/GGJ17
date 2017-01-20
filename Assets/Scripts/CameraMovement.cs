@@ -2,15 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraMovement : MonoBehaviour {
+[RequireComponent(typeof(Camera))]
+public class CameraMovement : MonoBehaviour
+{
+    [SerializeField]
+    private float _movementSpeed;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private Transform _camera;
+
+    private Vector3 _movementDirection = new Vector3(1, 0, 0);
+    
+    private void Awake()
+    {
+        _camera = GetComponent<Transform>();
+    }
+
+    private void Update()
+    {
+        _camera.position += _movementDirection * _movementSpeed * Time.deltaTime;
+    }
 }
