@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
@@ -15,16 +13,23 @@ public class GameController : MonoBehaviour
         {
             return _instance;
         }
-
-        set
+        private set
         {
             _instance = value;
         }
     }
 
+    public Transform Player
+    {
+        get
+        {
+            return _player.transform;
+        }
+    }
+
     void Awake()
     {
-        if(Instance != null)
+        if (Instance != null)
         {
             Destroy(gameObject);
         }
@@ -49,7 +54,7 @@ public class GameController : MonoBehaviour
 
     public void GameOver(GameResult result)
     {
-        switch(result)
+        switch (result)
         {
             case GameResult.Win:
                 Win();

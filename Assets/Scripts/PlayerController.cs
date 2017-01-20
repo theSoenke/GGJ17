@@ -7,8 +7,6 @@ public class PlayerController : MonoBehaviour
     private Transform _model;
     [SerializeField]
     private AnimationCurve _tiltCurve;
-    [SerializeField]
-    private LevelGenerator _levelGenerator;
 
 
     private Rigidbody2D _rigidbody;
@@ -38,9 +36,6 @@ public class PlayerController : MonoBehaviour
     {
         MovePlayer(_input);
         ApplyTilt();
-
-        float playerPos = transform.parent.position.x;
-        _levelGenerator.UpdatePlayerPosition(playerPos);
     }
     #endregion
 

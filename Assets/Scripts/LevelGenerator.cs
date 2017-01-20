@@ -10,27 +10,27 @@ public class LevelGenerator : MonoBehaviour
 
     private float lastSpawnedPos;
     private readonly List<GameObject> spawnedParts = new List<GameObject>();
+    private Transform player;
 
 
-    public void UpdatePlayerPosition(float xPlayerPos)
+    private void Start()
+    {
+        player = GameController.Instance.Player;
+    }
+
+    private void Update()
+    {
+        float playerPos = player.position.x;
+        LoadNewLevelParts(playerPos);
+        LevelCulling(playerPos);
+    }
+    private void LoadNewLevelParts(float xPlayerPos)
     {
         if (lastSpawnedPos - xPlayerPos - minPlayerSpawnDistance < 0)
         {
             float nextSpawnPos = lastSpawnedPos + partWidth;
             SpawnNewLevelPart(nextSpawnPos);
         }
-
-        LevelCulling(xPlayerPos);
-    }
-
-    private void Start()
-    {
-        Spawn();
-    }
-
-    private void Spawn()
-    {
-
     }
 
     private void LevelCulling(float xPlayerPos)
