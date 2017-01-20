@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,8 +6,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Transform _model;
     [SerializeField]
-    private AnimationCurve _tiltCurve; 
-
+    private AnimationCurve _tiltCurve;
+    [SerializeField]
+    private LevelGenerator _levelGenerator;
 
 
     private Rigidbody2D _rigidbody;
@@ -40,6 +38,9 @@ public class PlayerController : MonoBehaviour
     {
         MovePlayer(_input);
         ApplyTilt();
+
+        float playerPos = transform.parent.position.x;
+        _levelGenerator.UpdatePlayerPosition(playerPos);
     }
     #endregion
 
@@ -50,7 +51,7 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 CalculateDirectionVector(InputDirection direction)
     {
-        var directionVector = new Vector2(direction.X,direction.Y).normalized;
+        var directionVector = new Vector2(direction.X, direction.Y).normalized;
 
         return directionVector;
     }
@@ -63,6 +64,6 @@ public class PlayerController : MonoBehaviour
     private Quaternion CalculateTilt()
     {
         var angle = _tiltCurve.Evaluate(_rigidbody.velocity.y);
-        return Quaternion.Euler(0,0,angle + 90);
+        return Quaternion.Euler(0, 0, angle + 90);
     }
 }

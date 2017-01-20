@@ -10,7 +10,7 @@ public class PlayerTest : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             transform.position += new Vector3(1, 0, 0);
-            levelGenerator.SetPlayerPosition(transform.position.x);
+            levelGenerator.UpdatePlayerPosition(transform.position.x);
         }
     }
 }
