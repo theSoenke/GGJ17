@@ -11,6 +11,8 @@ public class GameController : MonoBehaviour
 
     public static GameController Instance { get; private set; }
 
+    private float startTime;
+
 
     public PlayerController Player
     {
@@ -18,6 +20,11 @@ public class GameController : MonoBehaviour
         {
             return player;
         }
+    }
+
+    public int Score
+    {
+        get { return (int)(Time.time - startTime); }
     }
 
     public PressureStatus Pressure
@@ -69,11 +76,13 @@ public class GameController : MonoBehaviour
         {
             Implode();
         }
+
+        int score = (int)(Time.time - startTime);
     }
 
-    private void Implode()
+    public void StartGame()
     {
-        Lose();
+        startTime = Time.time;
     }
 
     public void GameOver(GameResult result)
@@ -87,6 +96,11 @@ public class GameController : MonoBehaviour
                 Lose();
                 break;
         }
+    }
+
+    private void Implode()
+    {
+        Lose();
     }
 
     private void Win()

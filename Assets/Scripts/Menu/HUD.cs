@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class HUD : MonoBehaviour
 {
     public Text pressureText;
-
+    public Text scoreText;
 
 
     private PlayerController player;
@@ -19,6 +19,7 @@ public class HUD : MonoBehaviour
     private void Update()
     {
         UpdatePressure();
+        UpdateScore();
     }
 
     private void UpdatePressure()
@@ -44,5 +45,10 @@ public class HUD : MonoBehaviour
 
         var pressure = (int)player.WaterPressure();
         pressureText.text = pressure.ToString();
+    }
+
+    private void UpdateScore()
+    {
+        scoreText.text = GameController.Instance.Score.ToString();
     }
 }

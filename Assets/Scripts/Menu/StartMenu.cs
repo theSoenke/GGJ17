@@ -14,6 +14,7 @@ public class StartMenu : MonoBehaviour
             _gameRoot.SetActive(true);
             _hudRoot.SetActive(true);
             gameObject.SetActive(false);
+            GameController.Instance.StartGame();
         }
     }
 }
