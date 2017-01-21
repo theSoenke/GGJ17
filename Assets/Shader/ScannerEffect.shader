@@ -66,20 +66,20 @@
 					if (dist < _ScanDistance - (_ScanWidth + _ScanBorderWidth))
 					{
 						mask = clamp(1 - _ScanBorderWidth / clamp(dist - (_ScanDistance - _ScanWidth + _ScanBorderWidth), 0.01f, 1),
-							0, _MaskOpacity);
+							0, 1);
 					}
 					else if (dist > _ScanDistance - _ScanBorderWidth)
 					{
 						mask = clamp(_ScanBorderWidth / (dist - (_ScanDistance - _ScanBorderWidth)),
-							0, _MaskOpacity);
+							0, 1);
 						if (dist < _ScanDistance)
 							glow = half4(_Color.r, _Color.g, _Color.b, mask);
 					}
 				}
-				else if (dist > 40)
+				else if (dist > 30)
 				{
-					mask = clamp(10 / (dist - 40),
-						0, _MaskOpacity);
+					mask = clamp(5 / (dist - 30),
+						0, 1);
 				}
 				
 				

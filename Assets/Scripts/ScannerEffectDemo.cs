@@ -15,11 +15,20 @@ public class ScannerEffectDemo : MonoBehaviour
 
 
     private Camera _camera;
+    private Animator _animator;
 
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            _animator.Play("SonarAnimation");
+        }
+    }
 
 	void OnEnable()
 	{
         _camera = GetComponent<Camera>();
+        _animator = GetComponent<Animator>();
 	}
 
 	void OnRenderImage(RenderTexture src, RenderTexture dst)
