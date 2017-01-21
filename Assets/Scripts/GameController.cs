@@ -22,6 +22,8 @@ public class GameController : MonoBehaviour
     public static GameController Instance { get; private set; }
 
     private float startTime;
+    private int score;
+    private bool gameOver;
 
 
     public PlayerController Player
@@ -34,7 +36,7 @@ public class GameController : MonoBehaviour
 
     public int Score
     {
-        get { return (int)(Time.time - startTime); }
+        get { return score; }
     }
 
     public static int HighScore
@@ -100,7 +102,10 @@ public class GameController : MonoBehaviour
             Implode();
         }
 
-        int score = (int)(Time.time - startTime);
+        if (!gameOver)
+        {
+            score = (int)(Time.time - startTime);
+        }
     }
 
     public void StartGame()
@@ -169,7 +174,8 @@ public class GameController : MonoBehaviour
     private void Lose()
     {
         //TODO: handle lose state
-        SaveHighscore(Score);
+        gameOver = true;
+        SaveHighscore(score);
         player.gameObject.SetActive(false);
         ShowGameOverMenu();
     }

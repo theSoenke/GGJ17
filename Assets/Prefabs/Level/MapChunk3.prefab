@@ -205,7 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa26dd7003394ff4bb5dbd2522715bfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionEffect: {fileID: 1000011536288946, guid: 6b149f86c420ec9459ab6fcf05ab7812,
+  explosionPrefab: {fileID: 1000011536288946, guid: 6b149f86c420ec9459ab6fcf05ab7812,
     type: 2}
 --- !u!135 &135335847855516748
 SphereCollider:
