@@ -1,13 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class DieOnCollision : MonoBehaviour
 {
 
-	private void OnTriggerEnter(Collider others)
+    private void OnTriggerEnter(Collider others)
     {
-        Debug.Log("collision!");
-        GameController.Instance.GameOver(GameResult.Lose);
+        if (others.CompareTag("Rocks"))
+        {
+            Debug.Log("collision!");
+            GameController.Instance.GameOver(GameResult.Lose);
+        }
     }
 }

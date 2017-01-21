@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33088878752276658}
   - component: {fileID: 23619699451981776}
   - component: {fileID: 114663259500345600}
-  - component: {fileID: 95680049401937190}
+  - component: {fileID: 135001282460032202}
   m_Layer: 0
   m_Name: Mine
   m_TagString: Untagged
@@ -81,23 +81,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1104657082985586}
   m_Mesh: {fileID: 4300004, guid: 4a51d9e2e4dd34a4e931afa6a5db0845, type: 3}
---- !u!95 &95680049401937190
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1104657082985586}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 03a93458eeaecfd4cbe394091e39f4db, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114663259500345600
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -110,3 +93,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionEffect: {fileID: 0}
+--- !u!135 &135001282460032202
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1104657082985586}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
