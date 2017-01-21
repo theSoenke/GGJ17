@@ -14,7 +14,7 @@ public class LevelGenerator : MonoBehaviour
 
     private void Start()
     {
-        player = GameController.Instance.Player;
+        player = GameController.Instance.Player.transform;
     }
 
     private void Update()
@@ -27,8 +27,7 @@ public class LevelGenerator : MonoBehaviour
     {
         if (lastSpawnPos - xPlayerPos - minPlayerSpawnDistance < 0)
         {
-            float nextSpawnPos = lastSpawnPos;
-            SpawnNewLevelPart(nextSpawnPos);
+            SpawnNewLevelPart(lastSpawnPos);
         }
     }
 
@@ -36,7 +35,7 @@ public class LevelGenerator : MonoBehaviour
     {
         GameObject levelPartToRemove = null;
 
-        foreach (var levelPrefab in spawnedParts)
+        foreach (GameObject levelPrefab in spawnedParts)
         {
             if (levelPrefab.transform.position.x < xPlayerPos - cullingDistance)
             {

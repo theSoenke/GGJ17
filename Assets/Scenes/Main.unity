@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657886, g: 0.4964128, b: 0.5748176, a: 1}
+  m_IndirectSpecularColor: {r: 0.46169484, g: 0.512416, b: 0.5899328, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -137,6 +137,40 @@ MonoBehaviour:
   - {fileID: 114729383524616574, guid: d1c084b9530aa00479d55552d75624ac, type: 2}
   minPlayerSpawnDistance: 30
   cullingDistance: 15
+--- !u!1 &166890211
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 166890212}
+  m_Layer: 0
+  m_Name: HUD
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &166890212
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 166890211}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1152037121}
+  m_Father: {fileID: 460684889}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &259671943
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,11 +373,30 @@ Prefab:
       objectReference: {fileID: 259671943}
     - target: {fileID: 1724356187412246, guid: 252aff43b3a98684886e6712e6bcbf14, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114428028331854290, guid: 252aff43b3a98684886e6712e6bcbf14,
+        type: 2}
+      propertyPath: _hudRoot
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114428028331854290, guid: 252aff43b3a98684886e6712e6bcbf14,
+        type: 2}
+      propertyPath: hudRoot
+      value: 
+      objectReference: {fileID: 166890211}
+    - target: {fileID: 1395979588603912, guid: 252aff43b3a98684886e6712e6bcbf14, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 252aff43b3a98684886e6712e6bcbf14, type: 2}
   m_IsPrefabParent: 0
+--- !u!224 &460684889 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 224579497956706420, guid: 252aff43b3a98684886e6712e6bcbf14,
+    type: 2}
+  m_PrefabInternal: {fileID: 460684888}
 --- !u!1 &607467240
 GameObject:
   m_ObjectHideFlags: 0
@@ -407,11 +460,6 @@ Transform:
   m_Father: {fileID: 259671944}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &774409931 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1360853417803828, guid: bfe5384ce7507284986d86451dee963c,
-    type: 2}
-  m_PrefabInternal: {fileID: 1933402537}
 --- !u!4 &774409933 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4252904270207258, guid: bfe5384ce7507284986d86451dee963c,
@@ -444,7 +492,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad6ba00d15c677342823315af3829ad2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 774409931}
+  player: {fileID: 1933402538}
+  pressureWarning: 80
+  pressureCritical: 90
 --- !u!4 &799827499
 Transform:
   m_ObjectHideFlags: 0
@@ -458,6 +508,80 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1152037120
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1152037121}
+  - component: {fileID: 1152037123}
+  - component: {fileID: 1152037122}
+  m_Layer: 5
+  m_Name: Pressure
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1152037121
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1152037120}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 166890212}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 20, y: 0}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0, y: 0}
+--- !u!114 &1152037122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1152037120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 20
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 0
+--- !u!222 &1152037123
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1152037120}
 --- !u!1 &1244556063
 GameObject:
   m_ObjectHideFlags: 0
@@ -651,3 +775,9 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bfe5384ce7507284986d86451dee963c, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1933402538 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114333540100911876, guid: bfe5384ce7507284986d86451dee963c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1933402537}
+  m_Script: {fileID: 11500000, guid: c743cf36be61abb4ebba651506d004a4, type: 3}

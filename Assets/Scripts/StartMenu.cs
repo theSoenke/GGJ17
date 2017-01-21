@@ -1,18 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class StartMenu : MonoBehaviour {
-
+public class StartMenu : MonoBehaviour
+{
     [SerializeField]
     private GameObject _gameRoot;
-	
-	void Update ()
+    [SerializeField]
+    private GameObject hudRoot;
+
+    private void Update()
     {
-		if(Input.anyKey)
+        if (Input.anyKey)
         {
             _gameRoot.SetActive(true);
+            hudRoot.SetActive(true);
             gameObject.SetActive(false);
         }
-	}
+    }
 }

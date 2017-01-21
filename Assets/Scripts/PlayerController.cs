@@ -12,6 +12,16 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D _rigidbody;
 
 
+    public float WaterPressure()
+    {
+        float yPos = transform.position.y;
+        yPos *= yPos;
+
+        const float maxPressure = 100;
+        return Mathf.Clamp(maxPressure - yPos, 0, maxPressure);
+    }
+
+
     private InputDirection _input
     {
         get
