@@ -3,12 +3,11 @@ using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
 {
-    public List<GameObject> levelPrefabs;
+    public List<LevelPart> levelPrefabs;
     public float minPlayerSpawnDistance = 1;
-    public float prefabWidth = 1;
     public float cullingDistance = 1;
 
-    private float lastSpawnedPos;
+    private float lastSpawnPos;
     private readonly List<GameObject> spawnedParts = new List<GameObject>();
     private Transform player;
 
@@ -26,9 +25,9 @@ public class LevelGenerator : MonoBehaviour
     }
     private void LoadNewLevelParts(float xPlayerPos)
     {
-        if (lastSpawnedPos - xPlayerPos - minPlayerSpawnDistance < 0)
+        if (lastSpawnPos - xPlayerPos - minPlayerSpawnDistance < 0)
         {
-            float nextSpawnPos = lastSpawnedPos;
+            float nextSpawnPos = lastSpawnPos;
             SpawnNewLevelPart(nextSpawnPos);
         }
     }
@@ -54,15 +53,15 @@ public class LevelGenerator : MonoBehaviour
 
     private void SpawnNewLevelPart(float xPos)
     {
-        lastSpawnedPos = xPos + prefabWidth;
-        GameObject newLevelPart = GetNewLevelPart();
+        LevelPart newLevelPart = GetNewLevelPart();
+        lastSpawnPos = xPos + newLevelPart.width;
         var partPos = new Vector3(xPos, 0, 0);
-        GameObject spawnedPart = Instantiate(newLevelPart, partPos, newLevelPart.transform.rotation);
+        GameObject spawnedPart = Instantiate(newLevelPart.gameObject, partPos, newLevelPart.transform.rotation);
         spawnedPart.transform.SetParent(transform);
         spawnedParts.Add(spawnedPart);
     }
 
-    private GameObject GetNewLevelPart()
+    private LevelPart GetNewLevelPart()
     {
         int levelPartNum = Random.Range(0, levelPrefabs.Count);
         return levelPrefabs[levelPartNum];

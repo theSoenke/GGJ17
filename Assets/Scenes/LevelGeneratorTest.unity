@@ -424,11 +424,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelPrefabs:
-  - {fileID: 1789542884965236, guid: 15dec05b699522e44bfe8e5e212d1d8d, type: 2}
-  - {fileID: 1758064887347464, guid: 7744c33f5b282cc418044fa8d7f79e07, type: 2}
-  - {fileID: 1369821570708100, guid: d1c084b9530aa00479d55552d75624ac, type: 2}
+  - {fileID: 114663673642942396, guid: 15dec05b699522e44bfe8e5e212d1d8d, type: 2}
+  - {fileID: 114126381802507552, guid: 7744c33f5b282cc418044fa8d7f79e07, type: 2}
+  - {fileID: 114729383524616574, guid: d1c084b9530aa00479d55552d75624ac, type: 2}
   minPlayerSpawnDistance: 30
-  prefabWidth: 9
   cullingDistance: 15
 --- !u!4 &1255185935
 Transform:
