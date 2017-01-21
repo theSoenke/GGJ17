@@ -3,31 +3,54 @@
 public class GameController : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _player;
+    private PlayerController player;
+    [SerializeField]
+    private int pressureWarning = 80;
+    [SerializeField]
+    private int pressureCritical = 90;
 
-    private static GameController _instance;
+    public static GameController Instance { get; private set; }
 
-    public static GameController Instance
+
+    public PlayerController Player
     {
         get
         {
-            return _instance;
-        }
-        private set
-        {
-            _instance = value;
+            return player;
         }
     }
 
-    public Transform Player
+    public PressureStatus Pressure
     {
         get
         {
-            return _player.transform;
+            var pressure = (int)player.WaterPressure();
+
+            if (pressure < pressureWarning)
+            {
+                return PressureStatus.Normal;
+            }
+            if (pressure >= pressureCritical)
+            {
+                return PressureStatus.Critical;
+            }
+            if (pressure >= pressureWarning)
+            {
+                return PressureStatus.Warning;
+            }
+            return PressureStatus.Boom;
         }
     }
 
-    void Awake()
+    public enum PressureStatus
+    {
+        Normal,
+        Warning,
+        Critical,
+        Boom
+    }
+
+    private void Awake()
     {
         if (Instance != null)
         {
@@ -40,16 +63,17 @@ public class GameController : MonoBehaviour
         }
     }
 
-    // Use this for initialization
-    void Start()
+    private void Update()
     {
-
+        if (Pressure == PressureStatus.Boom)
+        {
+            Implode();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Implode()
     {
-
+        Lose();
     }
 
     public void GameOver(GameResult result)
@@ -73,6 +97,6 @@ public class GameController : MonoBehaviour
     private void Lose()
     {
         //TODO: handle lose state
-        _player.SetActive(false);
+        player.gameObject.SetActive(false);
     }
 }
