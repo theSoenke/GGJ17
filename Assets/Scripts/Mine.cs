@@ -10,6 +10,7 @@ public class Mine : MonoBehaviour
         if (col.CompareTag("Player"))
         {
             // BOOM
+            print("Boom");
         }
     }
 }
