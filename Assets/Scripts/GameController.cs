@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -8,8 +9,21 @@ public class GameController : MonoBehaviour
     private int pressureWarning = 80;
     [SerializeField]
     private int pressureCritical = 90;
+    [SerializeField]
+    private GameObject gameRoot;
+    [SerializeField]
+    private GameObject startMenu;
+    [SerializeField]
+    private GameObject gameOverMenu;
+    [SerializeField]
+    private GameObject hudMenu;
+
 
     public static GameController Instance { get; private set; }
+
+    private float startTime;
+    private int score;
+    private bool gameOver;
 
 
     public PlayerController Player
@@ -17,6 +31,19 @@ public class GameController : MonoBehaviour
         get
         {
             return player;
+        }
+    }
+
+    public int Score
+    {
+        get { return score; }
+    }
+
+    public static int HighScore
+    {
+        get
+        {
+            return PlayerPrefs.GetInt("highscore");
         }
     }
 
@@ -59,8 +86,12 @@ public class GameController : MonoBehaviour
         else
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
+    }
+
+    private void Start()
+    {
+        ShowStartMenu();
     }
 
     private void Update()
@@ -69,11 +100,20 @@ public class GameController : MonoBehaviour
         {
             Implode();
         }
+
+        if (!gameOver)
+        {
+            score = (int)(Time.time - startTime);
+        }
     }
 
-    private void Implode()
+    public void StartGame()
     {
-        Lose();
+        startTime = Time.time;
+        hudMenu.SetActive(true);
+        gameRoot.SetActive(true);
+        hudMenu.SetActive(true);
+        gameObject.SetActive(false);
     }
 
     public void GameOver(GameResult result)
@@ -89,6 +129,42 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public void HitMine()
+    {
+        Lose();
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene("Main");
+    }
+
+    private void ShowStartMenu()
+    {
+        startMenu.SetActive(true);
+    }
+
+    private void ShowGameOverMenu()
+    {
+        gameRoot.SetActive(false);
+        gameOverMenu.SetActive(true);
+    }
+
+    private void Implode()
+    {
+        Lose();
+    }
+
+    private void SaveHighscore(int score)
+    {
+        int highscore = HighScore;
+
+        if (score > highscore)
+        {
+            PlayerPrefs.SetInt("highscore", score);
+        }
+    }
+
     private void Win()
     {
         //TODO: handle win state
@@ -97,6 +173,9 @@ public class GameController : MonoBehaviour
     private void Lose()
     {
         //TODO: handle lose state
+        gameOver = true;
+        SaveHighscore(score);
         player.gameObject.SetActive(false);
+        ShowGameOverMenu();
     }
 }
