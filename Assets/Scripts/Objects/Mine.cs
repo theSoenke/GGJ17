@@ -2,14 +2,14 @@
 
 public class Mine : MonoBehaviour
 {
-    public GameObject explosionEffect;
+    public GameObject explosionPrefab;
 
 
     private void OnTriggerEnter(Collider col)
     {
-        // BOOM
-        print("Boom");
-        GameObject explosion = Instantiate(explosionEffect, transform.position, Quaternion.identity);
+        print("BOOM");
+        GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+        Destroy(explosion, 5);
         GameController.Instance.HitMine();
     }
 }

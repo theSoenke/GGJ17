@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -8,6 +9,15 @@ public class GameController : MonoBehaviour
     private int pressureWarning = 80;
     [SerializeField]
     private int pressureCritical = 90;
+    [SerializeField]
+    private GameObject gameRoot;
+    [SerializeField]
+    private GameObject startMenu;
+    [SerializeField]
+    private GameObject gameOverMenu;
+    [SerializeField]
+    private GameObject hudMenu;
+
 
     public static GameController Instance { get; private set; }
 
@@ -25,6 +35,14 @@ public class GameController : MonoBehaviour
     public int Score
     {
         get { return (int)(Time.time - startTime); }
+    }
+
+    public static int HighScore
+    {
+        get
+        {
+            return PlayerPrefs.GetInt("highscore");
+        }
     }
 
     public PressureStatus Pressure
@@ -70,6 +88,11 @@ public class GameController : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        ShowStartMenu();
+    }
+
     private void Update()
     {
         if (Pressure == PressureStatus.Boom)
@@ -83,6 +106,10 @@ public class GameController : MonoBehaviour
     public void StartGame()
     {
         startTime = Time.time;
+        hudMenu.SetActive(true);
+        gameRoot.SetActive(true);
+        hudMenu.SetActive(true);
+        gameObject.SetActive(false);
     }
 
     public void GameOver(GameResult result)
@@ -103,6 +130,22 @@ public class GameController : MonoBehaviour
         Lose();
     }
 
+    public void RestartGame()
+    {
+        SceneManager.LoadScene("Main");
+    }
+
+    private void ShowStartMenu()
+    {
+        startMenu.SetActive(true);
+    }
+
+    private void ShowGameOverMenu()
+    {
+        gameRoot.SetActive(false);
+        gameOverMenu.SetActive(true);
+    }
+
     private void Implode()
     {
         Lose();
@@ -110,17 +153,12 @@ public class GameController : MonoBehaviour
 
     private void SaveHighscore(int score)
     {
-        int highscore = GetHighscore();
+        int highscore = HighScore;
 
         if (score > highscore)
         {
             PlayerPrefs.SetInt("highscore", score);
         }
-    }
-
-    private int GetHighscore()
-    {
-        return PlayerPrefs.GetInt("highscore");
     }
 
     private void Win()
@@ -133,5 +171,6 @@ public class GameController : MonoBehaviour
         //TODO: handle lose state
         SaveHighscore(Score);
         player.gameObject.SetActive(false);
+        ShowGameOverMenu();
     }
 }
