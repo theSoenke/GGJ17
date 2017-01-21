@@ -5,14 +5,13 @@ using UnityEngine;
 public class StartMenu : MonoBehaviour {
 
     [SerializeField]
-    private GameObject _game;
+    private GameObject _gameRoot;
 	
-	// Update is called once per frame
 	void Update ()
     {
 		if(Input.anyKey)
         {
-            _game.SetActive(true);
+            _gameRoot.SetActive(true);
             gameObject.SetActive(false);
         }
 	}
