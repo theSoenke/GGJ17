@@ -147,6 +147,7 @@ public class GameController : MonoBehaviour
     private void ShowGameOverMenu()
     {
         gameRoot.SetActive(false);
+        hudMenu.SetActive(false);
         gameOverMenu.SetActive(true);
     }
 
