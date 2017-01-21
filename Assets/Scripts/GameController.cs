@@ -3,6 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
+    private static bool newGame = true;
+
     [SerializeField]
     private PlayerController player;
     [SerializeField]
@@ -23,7 +25,7 @@ public class GameController : MonoBehaviour
 
     private float startTime;
     private int score;
-    private bool gameOver;
+    private GameState gameState;
 
 
     public PlayerController Player
@@ -77,6 +79,13 @@ public class GameController : MonoBehaviour
         Boom
     }
 
+    private enum GameState
+    {
+        Pause,
+        Running,
+        Lost
+    }
+
     private void Awake()
     {
         if (Instance != null)
@@ -91,17 +100,24 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
-        ShowStartMenu();
+        if (newGame)
+        {
+            ShowStartMenu();
+        }
+        else
+        {
+            StartGame();
+        }
     }
 
     private void Update()
     {
         if (Pressure == PressureStatus.Boom)
         {
-            Implode();
+            //Implode();
         }
 
-        if (!gameOver)
+        if (gameState == GameState.Running)
         {
             score = (int)(Time.time - startTime);
         }
@@ -109,11 +125,12 @@ public class GameController : MonoBehaviour
 
     public void StartGame()
     {
+        newGame = false;
+        gameState = GameState.Running;
         startTime = Time.time;
-        hudMenu.SetActive(true);
         gameRoot.SetActive(true);
         hudMenu.SetActive(true);
-        gameObject.SetActive(false);
+        startMenu.SetActive(false);
     }
 
     public void GameOver(GameResult result)
@@ -174,7 +191,7 @@ public class GameController : MonoBehaviour
     private void Lose()
     {
         //TODO: handle lose state
-        gameOver = true;
+        gameState = GameState.Lost;
         SaveHighscore(score);
         player.gameObject.SetActive(false);
         ShowGameOverMenu();
