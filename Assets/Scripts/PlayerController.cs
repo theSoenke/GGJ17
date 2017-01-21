@@ -59,6 +59,6 @@ public class PlayerController : MonoBehaviour
     private Quaternion CalculateTilt()
     {
         var angle = _tiltCurve.Evaluate(_rigidbody.velocity.y);
-        return Quaternion.Euler(0, 0, angle + 90);
+        return Quaternion.Euler(0, 0, angle);
     }
 }
