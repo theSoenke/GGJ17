@@ -98,9 +98,29 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public void HitMine()
+    {
+        Lose();
+    }
+
     private void Implode()
     {
         Lose();
+    }
+
+    private void SaveHighscore(int score)
+    {
+        int highscore = GetHighscore();
+
+        if (score > highscore)
+        {
+            PlayerPrefs.SetInt("highscore", score);
+        }
+    }
+
+    private int GetHighscore()
+    {
+        return PlayerPrefs.GetInt("highscore");
     }
 
     private void Win()
@@ -111,6 +131,7 @@ public class GameController : MonoBehaviour
     private void Lose()
     {
         //TODO: handle lose state
+        SaveHighscore(Score);
         player.gameObject.SetActive(false);
     }
 }

@@ -778,6 +778,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pressureText: {fileID: 549562311}
+  scoreText: {fileID: 152438865}
 --- !u!1001 &1933402537
 Prefab:
   m_ObjectHideFlags: 0

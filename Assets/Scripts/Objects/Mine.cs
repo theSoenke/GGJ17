@@ -7,10 +7,9 @@ public class Mine : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        if (col.CompareTag("Player"))
-        {
-            // BOOM
-            print("Boom");
-        }
+        // BOOM
+        print("Boom");
+        GameObject explosion = Instantiate(explosionEffect, transform.position, Quaternion.identity);
+        GameController.Instance.HitMine();
     }
 }
