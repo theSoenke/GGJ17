@@ -553,6 +553,7 @@ GameObject:
   - component: {fileID: 1244556065}
   - component: {fileID: 1244556064}
   - component: {fileID: 1244556069}
+  - component: {fileID: 1244556070}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -589,7 +590,7 @@ Camera:
   m_GameObject: {fileID: 1244556063}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -641,6 +642,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _movementSpeed: 1
+--- !u!114 &1244556070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1244556063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68780c9640cc18a41a98659451582451, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EffectMaterial: {fileID: 2100000, guid: e8c3a19d240dde943a6002ee1bac6dc0, type: 2}
+  ScannerOrigin: {fileID: 774409933}
+  ScanDistance: 50
 --- !u!224 &1598757512 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224579497956706420, guid: 252aff43b3a98684886e6712e6bcbf14,
