@@ -7,6 +7,7 @@ public class Mine : MonoBehaviour
     public float blinkTime = 1;
 
     private Renderer mineRenderer;
+    private bool isExploded;
 
 
     private void Awake()
@@ -26,10 +27,13 @@ public class Mine : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        print("BOOM");
-        GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-        Destroy(explosion, 5);
-        GameController.Instance.HitMine();
+        if (!isExploded)
+        {
+            GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+            Destroy(explosion, 5);
+            GameController.Instance.HitMine();
+        }
+        isExploded = true;
     }
 
     public void ShowMine()
