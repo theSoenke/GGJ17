@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
 
 
     private Rigidbody2D _rigidbody;
+    private ScannerEffectDemo _scannerEffect;
+
 
     public float WaterPressure()
     {
@@ -33,6 +35,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        _scannerEffect = transform.parent.GetComponent<ScannerEffectDemo>();
     }
 
     private void Start()
@@ -44,6 +47,11 @@ public class PlayerController : MonoBehaviour
     {
         MovePlayer(_input);
         ApplyTilt();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            //_scannerEffect.RunScanner();
+        }
     }
     #endregion
 
