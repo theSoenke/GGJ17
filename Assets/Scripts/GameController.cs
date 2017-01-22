@@ -55,6 +55,14 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public float ScanCooldown
+    {
+        get
+        {
+            return cooldownTimer / scannerCooldown;
+        }
+    }
+
     private enum GameState
     {
         Pause,
@@ -93,7 +101,7 @@ public class GameController : MonoBehaviour
             score = (int)(Time.time - startTime);
         }
 
-        cooldownTimer -= Time.deltaTime;
+        cooldownTimer += Time.deltaTime;
     }
 
     public void StartGame()
@@ -108,7 +116,7 @@ public class GameController : MonoBehaviour
 
     public void StartScan()
     {
-        if (cooldownTimer <= 0)
+        if (cooldownTimer >= scannerCooldown)
         {
             scannerEffect.RunScan();
 
@@ -117,7 +125,7 @@ public class GameController : MonoBehaviour
 
             BlinkMines();
 
-            cooldownTimer += scannerCooldown;
+            cooldownTimer = 0;
         }
     }
 
