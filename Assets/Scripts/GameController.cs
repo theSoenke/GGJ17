@@ -12,6 +12,8 @@ public class GameController : MonoBehaviour
     [SerializeField]
     private ScannerEffectDemo scannerEffect;
     [SerializeField]
+    private float scannerCooldown;
+    [SerializeField]
     private CameraMovement cameraMovement;
     [SerializeField]
     private GameObject gameRoot;
