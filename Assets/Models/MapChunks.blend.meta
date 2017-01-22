@@ -15,6 +15,8 @@ ModelImporter:
     100014: Chunk_3
     100016: Chunk_3_001
     100018: Chunk_4
+    100020: Chunk_5
+    100022: Chunk_6
     400000: //RootNode
     400002: Cube
     400004: Cube_001
@@ -25,6 +27,8 @@ ModelImporter:
     400014: Chunk_3
     400016: Chunk_3_001
     400018: Chunk_4
+    400020: Chunk_5
+    400022: Chunk_6
     2300000: //RootNode
     2300002: Cube
     2300004: Cube_001
@@ -35,6 +39,8 @@ ModelImporter:
     2300014: Chunk_3
     2300016: Chunk_3_001
     2300018: Chunk_4
+    2300020: Chunk_5
+    2300022: Chunk_6
     3300000: //RootNode
     3300002: Cube
     3300004: Cube_001
@@ -45,6 +51,8 @@ ModelImporter:
     3300014: Chunk_3
     3300016: Chunk_3_001
     3300018: Chunk_4
+    3300020: Chunk_5
+    3300022: Chunk_6
     4300000: Cube
     4300002: Cube_002
     4300004: Cube_001
@@ -54,6 +62,8 @@ ModelImporter:
     4300012: Chunk_3
     4300014: Chunk_3_001
     4300016: Chunk_4
+    4300018: Chunk_6
+    4300020: Chunk_5
     7400000: Default Take
     9500000: //RootNode
   materials:
