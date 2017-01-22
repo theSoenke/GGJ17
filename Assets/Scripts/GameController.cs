@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
@@ -28,6 +29,7 @@ public class GameController : MonoBehaviour
     private float startTime;
     private int score;
     private GameState gameState;
+    private readonly List<Mine> mines = new List<Mine>();
 
 
     public PlayerController Player
@@ -151,8 +153,21 @@ public class GameController : MonoBehaviour
     public void StartScan()
     {
         scannerEffect.RunScan();
-        // TODO mine blink
-        // TODO play sound
+
+        var audioSource = scannerEffect.GetComponent<AudioSource>();
+        audioSource.Play();
+
+        BlinkMines();
+    }
+
+    public void RegisterMine(Mine mine)
+    {
+        mines.Add(mine);
+    }
+
+    public void UnregisterMine(Mine mine)
+    {
+        mines.Remove(mine);
     }
 
     public void HitMine()
@@ -175,6 +190,14 @@ public class GameController : MonoBehaviour
         gameRoot.SetActive(false);
         hudMenu.SetActive(false);
         gameOverMenu.SetActive(true);
+    }
+
+    private void BlinkMines()
+    {
+        foreach (var mine in mines)
+        {
+            mine.ShowMine();
+        }
     }
 
     private void Implode()

@@ -14,6 +14,16 @@ public class Mine : MonoBehaviour
         mineRenderer = GetComponent<Renderer>();
     }
 
+    private void Start()
+    {
+        GameController.Instance.RegisterMine(this);
+    }
+
+    private void OnDestroy()
+    {
+        GameController.Instance.UnregisterMine(this);
+    }
+
     private void OnTriggerEnter(Collider col)
     {
         print("BOOM");
@@ -32,9 +42,9 @@ public class Mine : MonoBehaviour
         float endTime = Time.time + duration;
         while (Time.time < endTime)
         {
-            mineRenderer.enabled = false;
-            yield return new WaitForSeconds(0.2f);
             mineRenderer.enabled = true;
+            yield return new WaitForSeconds(0.2f);
+            mineRenderer.enabled = false;
             yield return new WaitForSeconds(0.2f);
         }
     }
