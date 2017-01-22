@@ -4,7 +4,7 @@ public class StartMenu : MonoBehaviour
 {
     private void Update()
     {
-        if (Input.anyKey)
+        if (Input.anyKeyDown)
         {
             GameController.Instance.StartGame();
             gameObject.SetActive(false);

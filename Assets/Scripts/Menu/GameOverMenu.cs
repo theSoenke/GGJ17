@@ -18,7 +18,7 @@ public class GameOverMenu : MonoBehaviour
 
     private void Update()
     {
-        if (Input.anyKey)
+        if (Input.anyKeyDown)
         {
             GameController.Instance.RestartGame();
         }
