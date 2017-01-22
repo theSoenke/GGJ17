@@ -114,7 +114,7 @@ Material:
       second: 133
     - first:
         name: _ScanWidth
-      second: 36.91
+      second: 14.94
     - first:
         name: _SmoothnessTextureChannel
       second: 0
@@ -133,7 +133,7 @@ Material:
     m_Colors:
     - first:
         name: _Color
-      second: {r: 0.19168371, g: 0.7941176, b: 0, a: 0}
+      second: {r: 0.14807297, g: 1, b: 0.11764705, a: 0}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
