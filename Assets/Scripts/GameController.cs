@@ -12,7 +12,7 @@ public class GameController : MonoBehaviour
     [SerializeField]
     private ScannerEffectDemo scannerEffect;
     [SerializeField]
-    private float scannerCooldown;
+    private float scannerCooldown = 2;
     [SerializeField]
     private CameraMovement cameraMovement;
     [SerializeField]
@@ -31,6 +31,7 @@ public class GameController : MonoBehaviour
     private int score;
     private GameState gameState;
     private readonly List<Mine> mines = new List<Mine>();
+    private float cooldownTimer;
 
 
     public PlayerController Player
@@ -91,6 +92,8 @@ public class GameController : MonoBehaviour
         {
             score = (int)(Time.time - startTime);
         }
+
+        cooldownTimer -= Time.deltaTime;
     }
 
     public void StartGame()
@@ -105,12 +108,17 @@ public class GameController : MonoBehaviour
 
     public void StartScan()
     {
-        scannerEffect.RunScan();
+        if (cooldownTimer <= 0)
+        {
+            scannerEffect.RunScan();
 
-        var audioSource = scannerEffect.GetComponent<AudioSource>();
-        audioSource.Play();
+            var audioSource = scannerEffect.GetComponent<AudioSource>();
+            audioSource.Play();
 
-        BlinkMines();
+            BlinkMines();
+
+            cooldownTimer += scannerCooldown;
+        }
     }
 
     public void RegisterMine(Mine mine)

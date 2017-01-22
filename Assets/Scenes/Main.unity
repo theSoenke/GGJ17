@@ -913,6 +913,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 774409934}
   scannerEffect: {fileID: 1244556070}
+  scannerCooldown: 2
   cameraMovement: {fileID: 1244556069}
   gameRoot: {fileID: 259671943}
   startMenu: {fileID: 460684889}
