@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311947, g: 0.38074002, b: 0.35872707, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311947, g: 0.38074005, b: 0.35872722, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -912,9 +912,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 774409934}
-  pressureWarning: 80
-  pressureCritical: 90
   scannerEffect: {fileID: 1244556070}
+  cameraMovement: {fileID: 1244556069}
   gameRoot: {fileID: 259671943}
   startMenu: {fileID: 460684889}
   gameOverMenu: {fileID: 891757832}

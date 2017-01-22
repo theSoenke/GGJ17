@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(Camera))]
 public class CameraMovement : MonoBehaviour
@@ -11,7 +9,7 @@ public class CameraMovement : MonoBehaviour
     private Transform _camera;
 
     private Vector3 _movementDirection = new Vector3(1, 0, 0);
-    
+
     private void Awake()
     {
         _camera = GetComponent<Transform>();

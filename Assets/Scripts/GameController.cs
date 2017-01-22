@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,11 +10,9 @@ public class GameController : MonoBehaviour
     [SerializeField]
     private PlayerController player;
     [SerializeField]
-    private int pressureWarning = 80;
-    [SerializeField]
-    private int pressureCritical = 90;
-    [SerializeField]
     private ScannerEffectDemo scannerEffect;
+    [SerializeField]
+    private CameraMovement cameraMovement;
     [SerializeField]
     private GameObject gameRoot;
     [SerializeField]
@@ -53,36 +52,6 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public PressureStatus Pressure
-    {
-        get
-        {
-            var pressure = (int)player.WaterPressure();
-
-            if (pressure < pressureWarning)
-            {
-                return PressureStatus.Normal;
-            }
-            if (pressure >= pressureCritical)
-            {
-                return PressureStatus.Critical;
-            }
-            if (pressure >= pressureWarning)
-            {
-                return PressureStatus.Warning;
-            }
-            return PressureStatus.Boom;
-        }
-    }
-
-    public enum PressureStatus
-    {
-        Normal,
-        Warning,
-        Critical,
-        Boom
-    }
-
     private enum GameState
     {
         Pause,
@@ -116,11 +85,6 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
-        if (Pressure == PressureStatus.Boom)
-        {
-            //Implode();
-        }
-
         if (gameState == GameState.Running)
         {
             score = (int)(Time.time - startTime);
@@ -135,19 +99,6 @@ public class GameController : MonoBehaviour
         gameRoot.SetActive(true);
         hudMenu.SetActive(true);
         startMenu.SetActive(false);
-    }
-
-    public void GameOver(GameResult result)
-    {
-        switch (result)
-        {
-            case GameResult.Win:
-                Win();
-                break;
-            case GameResult.Lose:
-                Lose();
-                break;
-        }
     }
 
     public void StartScan()
@@ -200,11 +151,6 @@ public class GameController : MonoBehaviour
         }
     }
 
-    private void Implode()
-    {
-        Lose();
-    }
-
     private void SaveHighscore(int score)
     {
         int highscore = HighScore;
@@ -215,17 +161,18 @@ public class GameController : MonoBehaviour
         }
     }
 
-    private void Win()
+    public void Lose()
     {
-        //TODO: handle win state
+        gameState = GameState.Lost;
+        player.gameObject.SetActive(false);
+        //cameraMovement.enabled = false;
+        SaveHighscore(score);
+        StartCoroutine(GameOver());
     }
 
-    private void Lose()
+    private IEnumerator GameOver()
     {
-        //TODO: handle lose state
-        gameState = GameState.Lost;
-        SaveHighscore(score);
-        player.gameObject.SetActive(false);
+        yield return new WaitForSeconds(5);
         ShowGameOverMenu();
     }
 }
