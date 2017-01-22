@@ -111,10 +111,10 @@ Material:
       second: 0.02
     - first:
         name: _ScanDistance
-      second: 0
+      second: 133
     - first:
         name: _ScanWidth
-      second: 100
+      second: 36.91
     - first:
         name: _SmoothnessTextureChannel
       second: 0

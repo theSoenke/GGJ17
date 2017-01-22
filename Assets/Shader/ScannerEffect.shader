@@ -3,7 +3,6 @@
 	Properties
 	{
 		_MainTex("Texture", 2D) = "white" {}
-		_DetailTex("Texture", 2D) = "white" {}		
 		_ScanDistance("Scan Distance", float) = 0
 		_ScanWidth("Scan Width", float) = 10
 		_Color("Color", Color) = (1, 1, 1, 0)
@@ -43,48 +42,30 @@
 			}
 
 			sampler2D _MainTex;
-			sampler2D _DetailTex;
 			float4 _ScanOrigin;
 			float _ScanDistance;
 			float _ScanWidth;
-			float _ScanBorderWidth;
-			float _MaskOpacity;
+			float _ScanOpacity;
 			int _IsPinging;
-			
 			float4 _Color;
 
 			
 			half4 frag (VertOut i) : SV_Target
 			{
-				half4 col = tex2D(_MainTex, i.uv);
+				half4 texCol = tex2D(_MainTex, i.uv);
 				float dist = distance(_ScanOrigin, i.vertex);
-				float mask = _MaskOpacity;
-				half4 glow = half4(0,0,0,0);
+				half4 finalCol = texCol;
 
-				if (_IsPinging == 1)
+				if (_IsPinging != 0)
 				{
-					if (dist < _ScanDistance - (_ScanWidth + _ScanBorderWidth))
+					if (dist > (_ScanDistance - _ScanWidth) && dist < _ScanDistance)
 					{
-						mask = clamp(1 - _ScanBorderWidth / clamp(dist - (_ScanDistance - _ScanWidth + _ScanBorderWidth), 0.01f, 1),
-							0, 1);
-					}
-					else if (dist > _ScanDistance - _ScanBorderWidth)
-					{
-						mask = clamp(_ScanBorderWidth / (dist - (_ScanDistance - _ScanBorderWidth)),
-							0, 1);
-						if (dist < _ScanDistance)
-							glow = half4(_Color.r, _Color.g, _Color.b, mask);
+						finalCol = lerp(texCol, _Color, _ScanOpacity);
 					}
 				}
-				else if (dist > 30)
-				{
-					mask = clamp(5 / (dist - 30),
-						0, 1);
-				}
-				
 				
 
-				return col * mask + glow;
+				return finalCol;
 			}
 			ENDCG
 		}

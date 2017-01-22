@@ -9,9 +9,9 @@ public class ScannerEffectDemo : MonoBehaviour
     public Color GlowColor;
     public Transform ScannerOrigin;
     public float ScanDistance;
-    public float BorderWidth;
     public float ScanWidth;
-    public float MaskOpacity;
+    [Range(0,1)]
+    public float ScanOpacity;
 
 
     private Camera _camera;
@@ -35,9 +35,8 @@ public class ScannerEffectDemo : MonoBehaviour
 	{
         EffectMaterial.SetVector("_ScanOrigin", GetScannerSS(ScannerOrigin.position));
         EffectMaterial.SetFloat("_ScanDistance", ScanDistance);
-        EffectMaterial.SetFloat("_ScanBorderWidth", BorderWidth);
         EffectMaterial.SetFloat("_ScanWidth", ScanWidth);
-        EffectMaterial.SetFloat("_MaskOpacity", MaskOpacity);
+        EffectMaterial.SetFloat("_ScanOpacity", ScanOpacity);
         EffectMaterial.SetColor("_Color", GlowColor);
         EffectMaterial.SetInt("_IsPinging", IsPinging ? 1 : 0);
         Apply(src, dst, EffectMaterial);
