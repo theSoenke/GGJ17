@@ -136,6 +136,9 @@ MonoBehaviour:
   - {fileID: 114126381802507552, guid: 7744c33f5b282cc418044fa8d7f79e07, type: 2}
   - {fileID: 114729383524616574, guid: d1c084b9530aa00479d55552d75624ac, type: 2}
   - {fileID: 114559430407424444, guid: ef1528f5f475fc9489fb71b0b46cac39, type: 2}
+  - {fileID: 114664115075508454, guid: 49bafbd887447a844973e869fb7405a1, type: 2}
+  - {fileID: 114907604876179472, guid: 01cf74fffe13c38488f4a438226726ea, type: 2}
+  - {fileID: 114637890529146464, guid: 0941d7d7658cb89438c8d9c21f50e280, type: 2}
   minPlayerSpawnDistance: 30
   cullingDistance: 15
 --- !u!1 &259671943
