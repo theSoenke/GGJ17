@@ -10,6 +10,7 @@ public class LevelGenerator : MonoBehaviour
     private float lastSpawnPos;
     private readonly List<GameObject> spawnedParts = new List<GameObject>();
     private Transform player;
+    private LevelPart currentLevelPart;
 
 
     private void Start()
@@ -52,10 +53,12 @@ public class LevelGenerator : MonoBehaviour
 
     private void SpawnNewLevelPart(float xPos)
     {
-        LevelPart newLevelPart = GetNewLevelPart();
-        lastSpawnPos = xPos + newLevelPart.width;
-        var partPos = new Vector3(xPos, 0, 0);
-        GameObject spawnedPart = Instantiate(newLevelPart.gameObject, partPos, newLevelPart.transform.rotation);
+        float previousWidthHalf = currentLevelPart != null ? currentLevelPart.width / 2 : 0;
+        currentLevelPart = GetNewLevelPart();
+        float currentWidthHalf = currentLevelPart.width / 2;
+        lastSpawnPos = xPos + previousWidthHalf + currentWidthHalf;
+        var partPos = new Vector3(lastSpawnPos, 0, 0);
+        GameObject spawnedPart = Instantiate(currentLevelPart.gameObject, partPos, currentLevelPart.transform.rotation);
         spawnedPart.transform.SetParent(transform);
         spawnedParts.Add(spawnedPart);
     }
