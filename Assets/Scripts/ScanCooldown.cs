@@ -14,7 +14,6 @@ public class ScanCooldown : MonoBehaviour
     private void Update()
     {
         float scanCooldown = GameController.Instance.ScanCooldown;
-        print(scanCooldown);
         slider.value = scanCooldown;
     }
 }

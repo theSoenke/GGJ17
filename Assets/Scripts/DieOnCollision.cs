@@ -7,7 +7,7 @@ public class DieOnCollision : MonoBehaviour
         if (others.CompareTag("Rocks"))
         {
             Debug.Log("collision!");
-            GameController.Instance.Lose();
+            GameController.Instance.Collision();
         }
     }
 }

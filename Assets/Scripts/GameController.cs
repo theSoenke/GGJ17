@@ -179,7 +179,14 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public void Lose()
+    public void Collision()
+    {
+        var collisionSound = player.GetComponent<AudioSource>();
+        collisionSound.Play();
+        Lose();
+    }
+
+    private void Lose()
     {
         gameState = GameState.Lost;
         player.gameObject.SetActive(false);
