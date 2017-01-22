@@ -6905,9 +6905,10 @@ GameObject:
   - component: {fileID: 1171026164}
   - component: {fileID: 1171026166}
   - component: {fileID: 1171026165}
+  - component: {fileID: 1171026167}
   m_Layer: 0
   m_Name: Chunk_Base
-  m_TagString: Untagged
+  m_TagString: Rocks
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6962,6 +6963,20 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1171026163}
+  m_Mesh: {fileID: 4300022, guid: 8d19fccb2a593d84e9b7343071104112, type: 3}
+--- !u!64 &1171026167
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1171026163}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300022, guid: 8d19fccb2a593d84e9b7343071104112, type: 3}
 --- !u!1 &1192598804
 GameObject:
