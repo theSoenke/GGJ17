@@ -12,6 +12,8 @@ public class GameController : MonoBehaviour
     [SerializeField]
     private int pressureCritical = 90;
     [SerializeField]
+    private ScannerEffectDemo scannerEffect;
+    [SerializeField]
     private GameObject gameRoot;
     [SerializeField]
     private GameObject startMenu;
@@ -144,6 +146,13 @@ public class GameController : MonoBehaviour
                 Lose();
                 break;
         }
+    }
+
+    public void StartScan()
+    {
+        scannerEffect.RunScan();
+        // TODO mine blink
+        // TODO play sound
     }
 
     public void HitMine()
